@@ -32,12 +32,7 @@
 	overflow: hidden;
  }
  
- .counter {
-	position: absolute;
-	top: 10px;
-	right: 10px;
- 
- }
+
  
  .sun {
 	position: absolute;
@@ -57,8 +52,9 @@
 	position: absolute;
 	width: 100px;
 	height: 100px;
-	transform: translate(-50%, -50%,);
-	transition: 10s;
+	transform: translate(-50%, -50%);
+	transition: 5s;
+	
  
  }
  

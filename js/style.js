@@ -13,7 +13,7 @@ class Bird {
 		 this.ended()
 	  })
 	  setTimeout(() => this.birdStrikeBack(), 5000);
- 
+
 	  let left = this.getRandomCoordinate()
 	  if (left > 50) {
 		 left = left + 25
