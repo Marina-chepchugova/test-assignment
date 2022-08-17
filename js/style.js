@@ -4,7 +4,19 @@ class Bird {
 	constructor(bird) {
 	  this.bird = bird;
 	  this.bird.addEventListener('click', () => this.clickHandler());
- 
+	 
+     
+	  this.bird.addEventListener('click', ()=> this.clickCounter() )
+	  
+
+	}
+
+	clickCounter(){
+		
+		counter ++;
+		document.querySelector('span').innerHTML = counter;
+		
+
 	}
  
  
@@ -52,6 +64,8 @@ class Bird {
  
 	  this.bird.removeEventListener('transitionend', () => this.ended())
 	}
+     
+
  }
  
  
@@ -64,7 +78,7 @@ class Bird {
  
  // Находим код всех птичек на сцене
  const birds = document.querySelectorAll('.bird');
- 
+ let counter = 0;
  // для каждой птички создаем инстанс класса
  birds.forEach((bird) => {
 	new Bird(bird);
