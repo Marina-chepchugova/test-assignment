@@ -1,31 +1,51 @@
 // ==================
 // код приложения
 class Bird {
-	constructor(bird) {
-	  this.bird = bird;
+	constructor(root, counter) {
+ 
+	  this.root = root;
+	  this.counter = counter;
+ 
+	  this.root.addEventListener('click', () => this.clickCounter());
+ 
+	}
+ 
+	clickCounter() {
+	  this.counter.clickCounter();
+ 
+	}
+ 
+ }
+ 
+ class Counter {
+	constructor() {
+	  this.root = document.querySelector('.counter');
+	  this.value = 0;
+	}
+	clickCounter() {
+	  this.value += 1;
+	  this.root.textContent = this.value;
+	}
+ 
+ }
+ 
+ 
+ // ==================
+ // запуск приложения
+ class Game {
+	constructor() {
+	  this.bird = [];
+	  this.counter = new Counter();
+ 
+	  this.findbirds()
 	  this.bird.addEventListener('click', () => this.clickHandler());
-	 
-     
-	  this.bird.addEventListener('click', ()=> this.clickCounter() )
-	  
-
 	}
-
-	clickCounter(){
-		
-		counter ++;
-		document.querySelector('span').innerHTML = counter;
-		
-
-	}
- 
- 
 	clickHandler() {
 	  this.bird.addEventListener('transitionend', () => {
 		 this.ended()
 	  })
 	  setTimeout(() => this.birdStrikeBack(), 5000);
-
+ 
 	  let left = this.getRandomCoordinate()
 	  if (left > 50) {
 		 left = left + 25
@@ -64,23 +84,17 @@ class Bird {
  
 	  this.bird.removeEventListener('transitionend', () => this.ended())
 	}
-     
-
+ 
+	findbirds() {
+ 
+	  // Находим код всех птичек на сцене
+	  const birds = document.querySelectorAll('.bird');
+ 
+	  // для каждой птички создаем инстанс класса
+	  birds.forEach(bird => {
+		 this.bird.push(new Bird(bird, this.counter));
+	  });
+	}
  }
  
- 
- 
- 
- 
- 
- // ==================
- // запуск приложения
- 
- // Находим код всех птичек на сцене
- const birds = document.querySelectorAll('.bird');
- let counter = 0;
- // для каждой птички создаем инстанс класса
- birds.forEach((bird) => {
-	new Bird(bird);
- });
- 
+ new Game();
